@@ -1,7 +1,22 @@
-// routes/projectRoutes.js
 const express = require('express');
 const router = express.Router();
-const authMiddleware = require('../middlewares/authMiddleware');
-const { createProject } = require('../controllers/projectController');
+const {
+    getProjects,
+    getProjectById,
+    createProject,
+    updateProject,
+    deleteProject
+} = require('../controllers/projectController');
+const { single } = require('../middlewares/uploadMiddleware');
+const protectAdmin = require('../middlewares/authMiddleware');
 
-router.post('/add', authMiddleware, createProject);
+// Public routes
+router.get('/', getProjects);
+router.get('/:id', getProjectById);
+
+// Admin protected routes
+router.post('/', protectAdmin, single('image'), createProject);
+router.put('/:id', protectAdmin, single('image'), updateProject);
+router.delete('/:id', protectAdmin, deleteProject);
+
+module.exports = router;
