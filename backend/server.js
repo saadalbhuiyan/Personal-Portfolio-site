@@ -17,6 +17,10 @@ app.use("/admin", adminRoutes);
 const projectRoutes = require('./routes/projectRoutes');
 app.use('/projects', projectRoutes);
 
+const blogRoutes = require('./routes/blogRoutes');
+app.use('/blogs', blogRoutes);
+
+
 app.use('/uploads', express.static('uploads')); // serve uploaded files
 
 const PORT = process.env.PORT || 5000;

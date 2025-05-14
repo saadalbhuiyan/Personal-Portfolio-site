@@ -4,22 +4,18 @@ const serviceSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        trim: true,
+        trim: true
+    },
+    description: {
+        type: String,
+        required: true
     },
     image: {
-        type: String, // Path to compressed image (e.g., '/uploads/compressed/service-123.jpg')
-        required: true,
-    },
-    shortDescription: {
         type: String,
-        required: true,
-    },
-    fullDescription: {
-        type: String,
-        required: true,
-    },
+        required: true
+    }
 }, {
-    timestamps: true,
+    timestamps: true
 });
 
 module.exports = mongoose.model('Service', serviceSchema);
