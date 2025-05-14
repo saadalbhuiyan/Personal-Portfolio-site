@@ -7,8 +7,12 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
+
+const adminRoutes = require("./routes/adminRoutes");
+app.use("/admin", adminRoutes);
 
 app.get("/", (req, res) => {
     res.send("Portfolio API is running");
