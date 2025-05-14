@@ -20,6 +20,8 @@ app.use('/projects', projectRoutes);
 const blogRoutes = require('./routes/blogRoutes');
 app.use('/blogs', blogRoutes);
 
+const serviceRoutes = require('./routes/serviceRoutes');
+app.use('/services', serviceRoutes);
 
 app.use('/uploads', express.static('uploads')); // serve uploaded files
 
