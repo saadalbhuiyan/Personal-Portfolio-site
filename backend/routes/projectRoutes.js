@@ -10,11 +10,9 @@ const {
 const { single } = require('../middlewares/uploadMiddleware');
 const protectAdmin = require('../middlewares/authMiddleware');
 
-// Public routes
 router.get('/', getProjects);
 router.get('/:id', getProjectById);
 
-// Admin protected routes
 router.post('/', protectAdmin, single('image'), createProject);
 router.put('/:id', protectAdmin, single('image'), updateProject);
 router.delete('/:id', protectAdmin, deleteProject);

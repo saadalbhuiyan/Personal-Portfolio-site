@@ -1,19 +1,26 @@
+const Admin = require('../models/Admin');
+
 module.exports = async (req, res, next) => {
-    const { email, password } = req.headers;
-    const Admin = require('../models/Admin');
+    try {
+        const { email, password } = req.headers;
 
-    if (!email || !password) {
-        return res.status(400).json({ message: 'ইমেইল ও পাসওয়ার্ড হেডারে দিতে হবে।' });
+        if (!email || !password) {
+            return res.status(400).json({ message: 'Email and password must be provided in headers.' });
+        }
+
+        const admin = await Admin.findOne({ email });
+
+        if (!admin) {
+            return res.status(401).json({ message: 'Admin not found.' });
+        }
+
+        if (admin.password !== password) {
+            return res.status(401).json({ message: 'Invalid password.' });
+        }
+
+        req.admin = admin;
+        next();
+    } catch (err) {
+        res.status(500).json({ message: 'Authentication failed due to server error.' });
     }
-
-    const admin = await Admin.findOne({ email });
-
-    if (!admin) return res.status(401).json({ message: 'অ্যাডমিন পাওয়া যায়নি।' });
-
-    if (admin.password !== password) {
-        return res.status(401).json({ message: 'পাসওয়ার্ড ভুল।' });
-    }
-
-    req.admin = admin;
-    next();
 };
