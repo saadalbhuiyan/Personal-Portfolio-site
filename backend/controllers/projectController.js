@@ -32,6 +32,7 @@ exports.createProject = async (req, res) => {
 
         const newProject = new Project({ title, description, image });
         await newProject.save();
+
         res.status(201).json(newProject);
     } catch (err) {
         res.status(500).json({ message: 'Failed to create project.' });
@@ -53,6 +54,7 @@ exports.updateProject = async (req, res) => {
         if (image) project.image = image;
 
         await project.save();
+
         res.json(project);
     } catch (err) {
         res.status(500).json({ message: 'Failed to update project.' });
@@ -67,6 +69,7 @@ exports.deleteProject = async (req, res) => {
         }
 
         await project.deleteOne();
+
         res.json({ message: 'Project deleted successfully.' });
     } catch (err) {
         res.status(500).json({ message: 'Failed to delete project.' });

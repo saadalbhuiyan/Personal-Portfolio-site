@@ -5,19 +5,19 @@ const blogSchema = new mongoose.Schema(
         title: {
             type: String,
             required: true,
-            trim: true
+            trim: true,
         },
         content: {
             type: String,
-            required: true
+            required: true,
         },
         image: {
             type: String,
-            required: true
-        }
+            required: true,
+        },
     },
     {
-        timestamps: true
+        timestamps: true,
     }
 );
 

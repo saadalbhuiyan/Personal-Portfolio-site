@@ -32,6 +32,7 @@ exports.createTestimonial = async (req, res) => {
 
         const newTestimonial = new Testimonial({ name, comment, image });
         await newTestimonial.save();
+
         res.status(201).json(newTestimonial);
     } catch (err) {
         res.status(500).json({ message: 'Failed to create testimonial.' });
@@ -53,6 +54,7 @@ exports.updateTestimonial = async (req, res) => {
         if (image) testimonial.image = image;
 
         await testimonial.save();
+
         res.json(testimonial);
     } catch (err) {
         res.status(500).json({ message: 'Failed to update testimonial.' });
@@ -67,6 +69,7 @@ exports.deleteTestimonial = async (req, res) => {
         }
 
         await testimonial.deleteOne();
+
         res.json({ message: 'Testimonial deleted successfully.' });
     } catch (err) {
         res.status(500).json({ message: 'Failed to delete testimonial.' });

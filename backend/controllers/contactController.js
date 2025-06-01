@@ -9,6 +9,7 @@ exports.submitContact = async (req, res) => {
         }
 
         await Contact.create({ name, email, message });
+
         res.status(201).json({ message: 'Message sent successfully.' });
     } catch (err) {
         res.status(500).json({ message: 'Failed to send message. Please try again later.' });

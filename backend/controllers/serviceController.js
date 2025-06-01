@@ -32,6 +32,7 @@ exports.createService = async (req, res) => {
 
         const newService = new Service({ title, description, image });
         await newService.save();
+
         res.status(201).json(newService);
     } catch (err) {
         res.status(500).json({ message: 'Failed to create service.' });
@@ -53,6 +54,7 @@ exports.updateService = async (req, res) => {
         if (image) service.image = image;
 
         await service.save();
+
         res.json(service);
     } catch (err) {
         res.status(500).json({ message: 'Failed to update service.' });
@@ -67,6 +69,7 @@ exports.deleteService = async (req, res) => {
         }
 
         await service.deleteOne();
+
         res.json({ message: 'Service deleted successfully.' });
     } catch (err) {
         res.status(500).json({ message: 'Failed to delete service.' });

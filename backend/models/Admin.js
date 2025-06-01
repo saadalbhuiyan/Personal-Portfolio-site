@@ -4,12 +4,14 @@ const adminSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
     password: {
         type: String,
-        required: true
-    }
+        required: true,
+    },
+}, {
+    timestamps: true,
 });
 
-module.exports = mongoose.model('Admins', adminSchema);
+module.exports = mongoose.model('Admin', adminSchema);
