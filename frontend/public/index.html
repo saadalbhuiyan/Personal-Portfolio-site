@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#124E66" />
+  <meta name="theme-color" content="#000000" />
   <meta name="description" content="Personal Portfolio Website" />
 
   <!-- Google Fonts: Montserrat -->
@@ -18,78 +18,86 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
+    /*
+     * Define CSS variables for black & white professional color scheme
+     * Makes it easier to maintain and update colors consistently
+     */
     :root {
-      --primary: #124E66;          /* Midnight Green */
-      --secondary: #2E3944;        /* Dark Slate Blue */
-      --accent: #3F2E31;           /* Deep Plum */
-      --bg-dark: #212A31;          /* Charcoal Black */
-      --bg-light: #D3D9D4;         /* Soft Mist Gray */
-      --text-primary: #BFC1C0;     /* Light Silver */
-      --text-secondary: #748D92;   /* Sage Gray */
-      --border: #124E66;           /* Muted Teal */
-      --success: #7FA88F;          /* Soft Green */
-      --error: #B23B3B;            /* Warm Red */
-      --warning: #C9B89E;          /* Golden Beige */
-      --info: #3C6B89;             /* Cool Blue */
-      --disabled: #9EA7AC;         /* Light Slate */
-      --overlay: rgba(0,0,0,0.5); /* Black 50% */
+      --primary: #000000;          /* Pure Black */
+      --secondary: #222222;        /* Very Dark Gray */
+      --accent: #444444;           /* Dark Gray */
+      --bg-dark: #000000;          /* Black Background */
+      --bg-light: #ffffff;         /* Pure White Background */
+      --text-primary: #000000;     /* Black Text */
+      --text-secondary: #555555;   /* Medium Gray Text */
+      --border: #000000;           /* Black Border */
+      --success: #000000;          /* Black (can adjust if needed) */
+      --error: #b23b3b;            /* Warm Red for errors (kept for contrast) */
+      --warning: #c9b89e;          /* Golden Beige (optional) */
+      --info: #000000;             /* Black info text */
+      --disabled: #aaaaaa;         /* Light Gray for disabled */
+      --overlay: rgba(0, 0, 0, 0.5); /* Black 50% overlay */
     }
 
     /* Base font family & colors */
     body {
       font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      /* Set background to white for a clean professional look */
       background-color: var(--bg-light);
+      /* Primary text in black */
       color: var(--text-primary);
       margin: 0;
       padding: 0;
     }
 
-    /* Typography */
-    h1 {
+    /* Typography for headings with consistent black color */
+    h1, h2, h3 {
       font-weight: 700;
-      font-size: 30px;
-      line-height: 1.3;
       letter-spacing: 0.03em;
       text-align: left;
+      color: var(--text-primary);
+      margin-top: 0;
+      margin-bottom: 0.5em;
+    }
+
+    h1 {
+      font-size: 30px;
+      line-height: 1.3;
     }
 
     h2 {
-      font-weight: 700;
       font-size: 24px;
       line-height: 1.3;
-      letter-spacing: 0.03em;
-      text-align: left;
     }
 
     h3 {
-      font-weight: 700;
       font-size: 20px;
       line-height: 1.3;
-      letter-spacing: 0.03em;
-      text-align: left;
     }
 
+    /* Paragraph, input, textarea, button with black text */
     p, input, textarea, button {
       font-weight: 400;
       font-size: 14px;
       line-height: 1.6;
-      letter-spacing: 0em;
+      letter-spacing: 0;
       color: var(--text-primary);
+      background: transparent; /* Keep inputs clean */
+      border: 1px solid var(--border);
+      padding: 0.5em;
+      border-radius: 4px;
     }
 
-    /* Responsive font sizes */
+    /* Responsive font sizes for larger screens */
     @media (min-width: 641px) {
       h1 {
         font-size: 40px;
-        text-align: left;
       }
       h2 {
         font-size: 30px;
-        text-align: left;
       }
       h3 {
         font-size: 24px;
-        text-align: left;
       }
       p, input, textarea, button {
         font-size: 16px;
@@ -103,11 +111,25 @@
         animation: none !important;
       }
     }
+
+    /* Example of button hover with black & white style */
+    button {
+      cursor: pointer;
+      background-color: var(--primary);
+      color: var(--bg-light);
+      border: 1px solid var(--border);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    button:hover {
+      background-color: var(--bg-light);
+      color: var(--primary);
+    }
   </style>
 
   <title>Personal Portfolio</title>
 </head>
 <body>
+<!-- Root div for React or other frontend framework -->
 <div id="root"></div>
 </body>
 </html>
