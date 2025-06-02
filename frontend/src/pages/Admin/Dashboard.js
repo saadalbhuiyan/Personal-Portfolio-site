@@ -3,27 +3,30 @@ import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
     return (
-        <div className="p-6 bg-gray-100 min-h-screen">
-            <h1 className="text-4xl font-bold text-center mb-6">Admin Dashboard</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-                <Link to="/admin/projects" className="p-4 bg-white shadow-md rounded-lg hover:bg-gray-50">
-                    <h2 className="text-2xl font-semibold text-center">Manage Projects</h2>
-                </Link>
-                <Link to="/admin/blogs" className="p-4 bg-white shadow-md rounded-lg hover:bg-gray-50">
-                    <h2 className="text-2xl font-semibold text-center">Manage Blogs</h2>
-                </Link>
-                <Link to="/admin/services" className="p-4 bg-white shadow-md rounded-lg hover:bg-gray-50">
-                    <h2 className="text-2xl font-semibold text-center">Manage Services</h2>
-                </Link>
-                <Link to="/admin/testimonials" className="p-4 bg-white shadow-md rounded-lg hover:bg-gray-50">
-                    <h2 className="text-2xl font-semibold text-center">Manage Testimonials</h2>
-                </Link>
-                <Link to="/admin/contacts" className="p-4 bg-white shadow-md rounded-lg hover:bg-gray-50">
-                    <h2 className="text-2xl font-semibold text-center">Manage Contacts</h2>
-                </Link>
-                <Link to="/admin/password" className="p-4 bg-white shadow-md rounded-lg hover:bg-gray-50">
-                    <h2 className="text-2xl font-semibold text-center">Update Password</h2>
-                </Link>
+        <div className="p-6 max-w-[1200px] mx-auto">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-wide text-center text-[var(--text-primary)] mb-8">
+                Admin Dashboard
+            </h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[
+                    { to: "/admin/projects", label: "Manage Projects" },
+                    { to: "/admin/blogs", label: "Manage Blogs" },
+                    { to: "/admin/services", label: "Manage Services" },
+                    { to: "/admin/testimonials", label: "Manage Testimonials" },
+                    { to: "/admin/contacts", label: "Manage Contacts" },
+                    { to: "/admin/password", label: "Update Password" },
+                ].map(({ to, label }) => (
+                    <Link
+                        key={to}
+                        to={to}
+                        className="bg-[var(--bg-light)] shadow-md rounded-lg p-6 hover:scale-105 hover:shadow-lg transition-transform duration-200 ease-in-out flex items-center justify-center"
+                        aria-label={label}
+                    >
+                        <h2 className="text-xl md:text-2xl font-semibold text-[var(--text-primary)] text-center">
+                            {label}
+                        </h2>
+                    </Link>
+                ))}
             </div>
         </div>
     );

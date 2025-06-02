@@ -16,20 +16,40 @@ const ProjectDetail = () => {
                 setError('Failed to load project details');
             }
         };
-        fetchProject();
+        if (id) {
+            fetchProject();
+        }
     }, [id]);
 
-    if (!project && !error) return <div className="p-6 text-center">Loading...</div>;
+    if (!project && !error)
+        return (
+            <div className="p-4 md:p-6 text-center text-[var(--text-primary)] text-body-mobile md:text-body-desktop">
+                Loading...
+            </div>
+        );
 
     return (
-        <div className="p-6 bg-gray-100 min-h-screen">
-            <h1 className="text-4xl font-bold text-center mb-6">Project Details</h1>
-            {error && <p className="text-red-500 text-center">{error}</p>}
+        <div className="p-4 md:p-6 max-w-[1200px] mx-auto">
+            <h1 className="text-h1-mobile md:text-h1-desktop font-bold tracking-heading text-center text-[var(--text-primary)] mb-6">
+                Project Details
+            </h1>
+            {error && (
+                <p className="text-error text-body-mobile md:text-body-desktop text-center mb-6">{error}</p>
+            )}
             {project && (
-                <div className="max-w-2xl mx-auto bg-white p-6 shadow-md rounded-lg">
-                    <img src={project.image} alt={project.title} className="w-full h-64 object-cover rounded-lg mb-4" />
-                    <h2 className="text-2xl font-semibold mb-2">{project.title}</h2>
-                    <p className="text-gray-700">{project.description}</p>
+                <div className="bg-[var(--bg-light)] shadow-[0_4px_14px_rgba(18,78,102,0.15)] rounded-lg p-5">
+                    <img
+                        src={project.image.startsWith('http') ? project.image : `${process.env.REACT_APP_API_URL}/uploads/projects/${project.image}`}
+                        alt={project.title}
+                        className="w-full h-64 object-cover rounded-lg mb-4"
+                        loading="lazy"
+                    />
+                    <h2 className="text-h2-mobile md:text-h2-desktop font-bold tracking-heading text-[var(--text-primary)] mb-2">
+                        {project.title}
+                    </h2>
+                    <p className="text-body-mobile md:text-body-desktop text-[var(--text-primary)] line-height-body">
+                        {project.description}
+                    </p>
                 </div>
             )}
         </div>

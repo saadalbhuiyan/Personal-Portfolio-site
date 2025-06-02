@@ -17,6 +17,10 @@ import Login from './pages/Admin/Login';
 import Dashboard from './pages/Admin/Dashboard';
 import ManageProjects from './pages/Admin/ManageProjects';
 import ManageBlogs from './pages/Admin/ManageBlogs';
+import ManageServices from './pages/Admin/ManageServices';
+import ManageTestimonials from './pages/Admin/ManageTestimonials';
+import ManageContacts from './pages/Admin/ManageContacts';
+import UpdatePassword from './pages/Admin/UpdatePassword';
 
 const App = () => {
     return (
@@ -40,6 +44,10 @@ const App = () => {
                         <Route path="/admin/dashboard" element={<Dashboard />} />
                         <Route path="/admin/projects" element={<ManageProjects />} />
                         <Route path="/admin/blogs" element={<ManageBlogs />} />
+                        <Route path="/admin/services" element={<ManageServices />} />
+                        <Route path="/admin/testimonials" element={<ManageTestimonials />} />
+                        <Route path="/admin/contacts" element={<ManageContacts />} />
+                        <Route path="/admin/password" element={<UpdatePassword />} />
                     </Routes>
                 </main>
                 <Footer />

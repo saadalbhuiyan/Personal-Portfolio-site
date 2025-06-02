@@ -13,37 +13,52 @@ const UpdatePassword = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(null);
+        setSuccess(null);
+
         try {
             await updatePassword(newPassword);
             setSuccess('Password updated successfully!');
             setNewPassword('');
-            setError(null);
-        } catch (err) {
+        } catch {
             setError('Failed to update password');
-            setSuccess(null);
         }
     };
 
     return (
-        <div className="p-6 bg-gray-100 min-h-screen">
-            <h1 className="text-4xl font-bold text-center mb-6">Update Password</h1>
-            <form className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg" onSubmit={handleSubmit}>
-                <FormInput
-                    label="New Password"
-                    type="password"
-                    name="newPassword"
-                    value={newPassword}
-                    onChange={handleChange}
-                />
-                <button
-                    type="submit"
-                    className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-                >
-                    Update Password
-                </button>
-                {error && <p className="text-red-500 text-center mt-2">{error}</p>}
-                {success && <p className="text-green-500 text-center mt-2">{success}</p>}
-            </form>
+        <div className="p-4 md:p-6 max-w-[1200px] mx-auto">
+            <h1 className="text-h1-mobile md:text-h1-desktop font-bold tracking-heading text-[var(--text-primary)] text-center mb-6">
+                Update Password
+            </h1>
+            <div className="bg-[var(--card-bg)] shadow-card rounded-lg p-6 max-w-md mx-auto">
+                <form onSubmit={handleSubmit}>
+                    <FormInput
+                        label="New Password"
+                        type="password"
+                        name="newPassword"
+                        value={newPassword}
+                        onChange={handleChange}
+                        required
+                    />
+                    <button
+                        type="submit"
+                        className="w-full bg-[var(--primary)] text-[var(--card-bg)] p-3 rounded-md hover:bg-[var(--secondary)] transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[var(--accent)] min-h-[44px]"
+                        aria-label="Update password"
+                    >
+                        Update Password
+                    </button>
+                </form>
+                {error && (
+                    <p className="text-[var(--error)] text-body-mobile md:text-body-desktop text-center mt-6">
+                        {error}
+                    </p>
+                )}
+                {success && (
+                    <p className="text-[var(--success)] text-body-mobile md:text-body-desktop text-center mt-6">
+                        {success}
+                    </p>
+                )}
+            </div>
         </div>
     );
 };

@@ -3,9 +3,108 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#124E66" />
   <meta name="description" content="Personal Portfolio Website" />
+
+  <!-- Google Fonts: Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
+          rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --primary: #124E66;          /* Midnight Green */
+      --secondary: #2E3944;        /* Dark Slate Blue */
+      --accent: #3F2E31;           /* Deep Plum */
+      --bg-dark: #212A31;          /* Charcoal Black */
+      --bg-light: #D3D9D4;         /* Soft Mist Gray */
+      --text-primary: #BFC1C0;     /* Light Silver */
+      --text-secondary: #748D92;   /* Sage Gray */
+      --border: #124E66;           /* Muted Teal */
+      --success: #7FA88F;          /* Soft Green */
+      --error: #B23B3B;            /* Warm Red */
+      --warning: #C9B89E;          /* Golden Beige */
+      --info: #3C6B89;             /* Cool Blue */
+      --disabled: #9EA7AC;         /* Light Slate */
+      --overlay: rgba(0,0,0,0.5); /* Black 50% */
+    }
+
+    /* Base font family & colors */
+    body {
+      font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-primary);
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Typography */
+    h1 {
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 1.3;
+      letter-spacing: 0.03em;
+      text-align: left;
+    }
+
+    h2 {
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 1.3;
+      letter-spacing: 0.03em;
+      text-align: left;
+    }
+
+    h3 {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 1.3;
+      letter-spacing: 0.03em;
+      text-align: left;
+    }
+
+    p, input, textarea, button {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.6;
+      letter-spacing: 0em;
+      color: var(--text-primary);
+    }
+
+    /* Responsive font sizes */
+    @media (min-width: 641px) {
+      h1 {
+        font-size: 40px;
+        text-align: left;
+      }
+      h2 {
+        font-size: 30px;
+        text-align: left;
+      }
+      h3 {
+        font-size: 24px;
+        text-align: left;
+      }
+      p, input, textarea, button {
+        font-size: 16px;
+      }
+    }
+
+    /* Accessibility - reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+
   <title>Personal Portfolio</title>
 </head>
 <body>

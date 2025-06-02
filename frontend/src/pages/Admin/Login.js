@@ -9,45 +9,64 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(null);
+
         try {
-            await loginAdmin(formData.email, formData.password);
-            navigate('/admin/dashboard');
-        } catch (err) {
-            setError('Login failed');
+            const response = await loginAdmin(formData.email, formData.password);
+            const token = response.data.token;
+            if (token) {
+                localStorage.setItem('token', token);
+                navigate('/admin/dashboard');
+            } else {
+                setError('Login failed: No token received');
+            }
+        } catch {
+            setError('Login failed: Invalid email or password');
         }
     };
 
     return (
-        <div className="p-6 bg-gray-100 min-h-screen">
-            <h1 className="text-4xl font-bold text-center mb-6">Admin Login</h1>
-            <form className="max-w-sm mx-auto p-4 bg-white shadow-md rounded-lg" onSubmit={handleSubmit}>
-                <FormInput
-                    label="Email"
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                />
-                <FormInput
-                    label="Password"
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                />
-                <button
-                    type="submit"
-                    className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-                >
-                    Login
-                </button>
-                {error && <p className="text-red-500 text-center mt-2">{error}</p>}
-            </form>
+        <div className="p-6 max-w-[1200px] mx-auto">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-wide text-center text-[var(--text-primary)] mb-8">
+                Admin Login
+            </h1>
+            <div className="bg-[var(--bg-light)] shadow-md rounded-lg p-6 max-w-md mx-auto">
+                <form onSubmit={handleSubmit} noValidate>
+                    <FormInput
+                        label="Email"
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                    />
+                    <FormInput
+                        label="Password"
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        required
+                    />
+                    <button
+                        type="submit"
+                        className="w-full bg-[var(--primary)] text-[var(--bg-light)] p-3 rounded-md hover:bg-[var(--secondary)] transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-[var(--accent)] min-h-[44px]"
+                        aria-label="Login to admin"
+                    >
+                        Login
+                    </button>
+                    {error && (
+                        <p className="text-[var(--error)] text-base md:text-lg text-center mt-6">
+                            {error}
+                        </p>
+                    )}
+                </form>
+            </div>
         </div>
     );
 };
