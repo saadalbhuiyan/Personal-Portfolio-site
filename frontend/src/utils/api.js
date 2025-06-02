@@ -7,6 +7,7 @@ const getAuthHeaders = () => {
     return token ? { Authorization: `Bearer ${token}` } : {};
 };
 
+// Admin Auth
 export const loginAdmin = (email, password) => {
     return axios.post(`${API_URL}/admin/login`, { email, password });
 };
@@ -15,9 +16,7 @@ export const updatePassword = (newPassword) => {
     return axios.put(
         `${API_URL}/admin/password`,
         { password: newPassword },
-        {
-            headers: getAuthHeaders(),
-        }
+        { headers: getAuthHeaders() }
     );
 };
 
@@ -131,5 +130,10 @@ export const submitContact = (data) => axios.post(`${API_URL}/contacts`, data);
 
 export const getContacts = () =>
     axios.get(`${API_URL}/contacts`, {
+        headers: getAuthHeaders(),
+    });
+
+export const deleteContact = (id) =>
+    axios.delete(`${API_URL}/contacts/${id}`, {
         headers: getAuthHeaders(),
     });
